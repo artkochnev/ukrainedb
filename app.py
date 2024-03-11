@@ -283,7 +283,7 @@ def main():
     col2.plotly_chart(fig_fsi_liquidity, use_container_height=400, use_container_width=300)
     st.markdown('---')
     st.subheader('Government finance')
-    m1, m2, m3, m4 = st.columns(4)
+    m1, m2, m3 = st.columns(3)
     m1.metric(
         "Yield, UAH govt, bonds", 
         value = get_metric(df_m, 'Yield, UAH govt bonds', 'Last value', unit='%'),
@@ -298,17 +298,12 @@ def main():
         "Fiscal expenses, UAH", 
         value = get_metric(df_m, 'Fiscal expenses, total', 'Last value', digits=6, digits_unit='tn'),
         )
-    m4.metric(
-        "Domestic finance of deficit", 
-        value = get_metric(df_m, 'Fiscal finance, total', 'Last value', unit='pct'),
-        )
     write_expander(df_t,title='Government finance', expander_title='How much Ukraine needs to finance the war')
     col1, col2 = st.columns(2)
     col1.plotly_chart(fig_fiscal_income, use_container_height=400, use_container_width=300)
     col2.plotly_chart(fig_fiscal_expenses, use_container_height=400, use_container_width=300)
-    col1, col2 = st.columns(2)
-    col1.plotly_chart(fig_fiscal_finance, use_container_height=400, use_container_width=150)
-    col2.plotly_chart(fig_bond_yields, use_container_height=400, use_container_width=450)
+    st.plotly_chart(fig_fiscal_finance, use_container_height=400)
+    st.plotly_chart(fig_bond_yields, use_container_height=400)
 
 #     st.header('War and cooperation')
 #     st.subheader('Ukraine support')
