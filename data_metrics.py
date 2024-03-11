@@ -19,7 +19,10 @@ logging.basicConfig(filename='data_metrics.log', encoding='utf-8', level=logging
 
 def get_source_files(source = SOURCE_FILE, sheet = SOURCE_SHEET):
     df = pd.read_excel(source, sheet_name=sheet)
-    df = df[df['Active'] == 1]
+    df = (df
+          [df['Active'] == 1]
+          [df['Transformed data'] == 1]
+          )
     df = df[['Name', 'Shape Horisontal', 'Title', 'Subtitle', 'Value column', 'Unit', 'Condition field', 'Condition', 'Source', 'Source link']]
     df = df.reset_index()
     return df

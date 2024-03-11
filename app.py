@@ -273,9 +273,9 @@ def main():
         delta_color = 'inverse',
         )    
     m2.metric(
-        "Liquid asset ratio", 
-        value = get_metric(df_m, 'Liquid asset ratio', 'Last value', unit='%'),
-        delta = get_metric(df_m, 'Liquid asset ratio', 'Change', unit='%'),
+        "FX position to capital", 
+        value = get_metric(df_m, 'FX position to capital', 'Last value', unit='%'),
+        delta = get_metric(df_m, 'FX position to capital', 'Change', unit='%'),
         delta_color='normal'
         )
     col1, col2 = st.columns(2)
@@ -310,26 +310,26 @@ def main():
     col1.plotly_chart(fig_fiscal_finance, use_container_height=400, use_container_width=150)
     col2.plotly_chart(fig_bond_yields, use_container_height=400, use_container_width=450)
 
-    st.header('War and cooperation')
-    st.subheader('Ukraine support')
-    write_expander(df_t,title='Ukraine support', expander_title='How much do countries follow their promise to support Ukraine')
-    m1, m2, m3 = st.columns(3)
-    m1.metric(
-        "Support announced, USD",
-        value = get_metric(df_m, 'Commitment', 'Last value', unit='bn')
-    )
-    m2.metric(
-        "Support delivered, USD",
-        value = get_metric(df_m, 'Delivered', 'Last value', unit='bn')
-    )
-    m3.metric(
-        "Military support sent, USD",
-        value = get_metric(df_m, 'Delivered military help', 'Last value', unit='bn')
-    )
-#   st.plotly_chart(fig_ukraine_support_committed, use_container_height=800, use_container_width=800)
-    st.plotly_chart(fig_ukraine_support_delivered, use_container_height=800, use_container_width=300)
-    st.plotly_chart(fig_delivery_rate)
-    st.markdown('---')
+#     st.header('War and cooperation')
+#     st.subheader('Ukraine support')
+#     write_expander(df_t,title='Ukraine support', expander_title='How much do countries follow their promise to support Ukraine')
+#     m1, m2, m3 = st.columns(3)
+#     m1.metric(
+#         "Support announced, USD",
+#         value = get_metric(df_m, 'Commitment', 'Last value', unit='bn')
+#     )
+#     m2.metric(
+#         "Support delivered, USD",
+#         value = get_metric(df_m, 'Delivered', 'Last value', unit='bn')
+#     )
+#     m3.metric(
+#         "Military support sent, USD",
+#         value = get_metric(df_m, 'Delivered military help', 'Last value', unit='bn')
+#     )
+# #   st.plotly_chart(fig_ukraine_support_committed, use_container_height=800, use_container_width=800)
+#     st.plotly_chart(fig_ukraine_support_delivered, use_container_height=800, use_container_width=300)
+#     st.plotly_chart(fig_delivery_rate)
+#     st.markdown('---')
     st.header('War and reconstruction')
     # Put key metrics
     m1, m2, m3 = st.columns(3)
@@ -353,9 +353,9 @@ def main():
     st.header('References')
     st.markdown(
         # - ACLED. [Ukraine crisis hub](https://acleddata.com/ukraine-crisis/)
+        # - Kiel Institute for the World Economy | IFW Kiel. [Ukraine support tracker](https://www.ifw-kiel.de/topics/war-against-ukraine/ukraine-support-tracker/)
         """
         - International Organisation for Migration | IOM. [Ukraine Displacement](https://displacement.iom.int/ukraine)
-        - Kiel Institute for the World Economy | IFW Kiel. [Ukraine support tracker](https://www.ifw-kiel.de/topics/war-against-ukraine/ukraine-support-tracker/)
         - National Bank of Ukraine | NBU. [Statistics at the National Bank of Ukraine](https://bank.gov.ua/en/statistic/nbustatistic)
         - The Humanitarian Data Exchange | HDX. [Ukraine - Humanitarian Data Exchange](https://data.humdata.org/group/ukr)
         - United Nations | UN. [Black Sea Grain Initiative Joint Coordination Centre](https://www.un.org/en/black-sea-grain-initiative/)

@@ -3375,3 +3375,7 @@ INFO:root:Loaded texts
 INFO:root:Loaded metrics
 INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 11:20:54
 INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 11:58:50
+INFO:root:Loaded news
