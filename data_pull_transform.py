@@ -1,5 +1,6 @@
 from datetime import datetime, date, timedelta
 import zipfile
+import streamlit as st
 from urllib.request import urlopen
 import pandas as pd
 import numpy as np
@@ -39,6 +40,11 @@ INSTRUMENT_LIST = {
     'type': ['FX rate']
 }
 
+
+# --- UNLOCK FOR PRODUCTION
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 150)
+
 # --- MAPBOX TOKEN
 def get_mapbox_token(label = 'MAPBOX_TOKEN'):
     try:
@@ -46,10 +52,6 @@ def get_mapbox_token(label = 'MAPBOX_TOKEN'):
     except Exception as e:
         logging.error(f'Could not export Mapbox token {e}')
         return None
-
-# --- UNLOCK FOR PRODUCTION
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', 150)
 
 # --- TEST FUNCTIONS
 def log_data_transform(output):
@@ -107,7 +109,6 @@ def get_gdp_ua(source='https://api.db.nomics.world/v22/series/WB/WDI/A-NY.GDP.MK
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
-
 # --- YAHOO FINANCE
 def get_yf_instrument(instrument, alias, type, start_date, end_date):
     try:
@@ -136,7 +137,6 @@ def get_yf_data(currency_list=INSTRUMENT_LIST, output = f'{TARGET_FOLDER}/tf_yf_
         log_data_transform(output=output)
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
-
 
 def plot_ccy_data(source = f'{TARGET_FOLDER}/tf_yf_data.csv', instrument = 'UAH/USD', title = 'FX rate', retrieved_from='Yahoo Finance'):
     df = pd.read_csv(source,  encoding = 'utf-16')
@@ -209,7 +209,7 @@ def transform_grain_data(source = f'{TARGET_FOLDER}/src_grain_destinations.csv',
     except Exception as e:
         logging.error(f'Could not transform {output}. Error: {e}')
 
-
+@st.cache_resource(ttl = '7 days')
 def plot_grain_destinations(source=f'{TARGET_FOLDER}/tf_grain_destinations.csv', title ='Grain delivered under grain deal', retrieved_from='WFO | HDX'):
     df = pd.read_csv(source, encoding='utf-16')
     fig = px.bar(df, x = 'Tons received', y='Income group', color = 'Country', orientation='h',
@@ -234,7 +234,7 @@ def transform_hum_data(source = f'{TARGET_FOLDER}/src_hum_data.csv', output=f'{T
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
-
+@st.cache_resource(ttl = '7 days')
 def plot_hum_data(source=f'{TARGET_FOLDER}/tf_hum_data.csv', series = 'Refugees', title = 'Refugee count', retrieved_from='UNHCR | HDX'):
     df = pd.read_csv(source, encoding='utf-16')
     fig = px.area(df, y = series, x = 'Date', title=f'{title} <br>Source: {retrieved_from}</br>',)
@@ -250,6 +250,7 @@ def transform_reconstruction_sectors(source=f'{TARGET_FOLDER}/src_reconstruction
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_reconstruction_sectors(source=f'{TARGET_FOLDER}/tf_reconstruction_sectors.csv', series = 'Damage', title = 'Damage assessment as of August 2022', retrieved_from='World Bank (2022)'):
     df = pd.read_csv(source, encoding='utf-16')
     fig = px.treemap(df, path=[px.Constant("All"), 'Sector Type', 'Sector'], values=series,
@@ -267,6 +268,7 @@ def transform_reconstruction_regions(source=f'{TARGET_FOLDER}/src_reconstruction
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_reconstruction_regions(source=f'{TARGET_FOLDER}/tf_reconstruction_regions.csv', title = 'Damage by regions as of August 2022', retrieved_from='World Bank (2022)'):
     df = pd.read_csv(source, encoding='utf-16')
     fig = px.bar(df, x = 'Damage', y='Oblast', orientation='h', color = 'Oblast type',
@@ -311,6 +313,7 @@ def transform_support_data(source=f'{TARGET_FOLDER}/src_ukraine_support.csv' ,  
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_ukraine_support(source=f'{TARGET_FOLDER}/tf_ukraine_support.csv', series = 'Value committed', title='Public commitment to support Ukraine (both cash and kind)', retrieved_from='IFW Kiel'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['retrieved'].iloc[0]
@@ -358,7 +361,7 @@ def clean_fiscal_data(df_source, source_file, sheet_labels):
         df = df.iloc[:,-6:]
         last_date = list(df)[0]
         df['date'] = last_date[:11]
-        df.columns = ['Value', 'Retrieve date', 'Item', 'Code', 'Active', 'Total', 'Date']
+        df.columns = ['Value', 'Retrieve date', 'Indicator', 'Code', 'Active', 'Total', 'Date']
 
         # Calculate shares
         df['Value'] = pd.to_numeric(df['Value'], errors='coerce')
@@ -380,10 +383,11 @@ def transform_fiscal_income(source=f'{TARGET_FOLDER}/src_fiscal_income.csv' ,  o
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_fiscal_income(source=f'{TARGET_FOLDER}/tf_fiscal_income.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -403,11 +407,11 @@ def transform_fiscal_expenses(source=f'{TARGET_FOLDER}/src_fiscal_expenses.csv' 
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
-
+@st.cache_resource(ttl = '7 days')
 def plot_fiscal_expenses(source=f'{TARGET_FOLDER}/tf_fiscal_expenses.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -427,10 +431,11 @@ def transform_fiscal_finance(source=f'{TARGET_FOLDER}/src_fiscal_finance.csv' , 
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_fiscal_finance(source=f'{TARGET_FOLDER}/tf_fiscal_finance.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -455,7 +460,7 @@ def transform_cpi_headline(source=f'{TARGET_FOLDER}/src_cpi_headline.csv',  outp
         df_last = df_last.dropna()
         last_date = list(df_last)[0]
         df_last['date'] = last_date[:11]
-        df_last.columns = ['Value', 'Retrieve date', 'Item', 'Total', 'Date']
+        df_last.columns = ['Value', 'Retrieve date', 'Indicator', 'Total', 'Date']
         df_last = df_last.reset_index()
         df_last.to_csv(output_last, index=False, encoding='utf-16')
         log_data_transform(output_last)
@@ -484,7 +489,7 @@ def transform_cpi_headline(source=f'{TARGET_FOLDER}/src_cpi_headline.csv',  outp
 def plot_cpi_last(source=f'{TARGET_FOLDER}/tf_cpi_last.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
         text_auto='.2s',
         hover_data={'Value': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -497,6 +502,7 @@ def plot_cpi_last(source=f'{TARGET_FOLDER}/tf_cpi_last.csv', retrieved_from='Nat
     fig.update_layout(xaxis={'visible': True, 'showticklabels': True}, yaxis={'visible': True, 'showticklabels': True})
     return fig
 
+@st.cache_resource(ttl = '7 days')
 def plot_cpi_12m(source=f'{TARGET_FOLDER}/tf_cpi_12m.csv', series = 'Inflation, yoy', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Retrieved'][0]
@@ -524,7 +530,7 @@ def transform_international_reserves(source=f'{TARGET_FOLDER}/src_international_
         last_date = list(df)[0]
         last_date = re.sub(r"\d+", "", last_date)
         df['date'] = last_date[:11]
-        df.columns = ['Value', 'Retrieve date', 'Item', 'Total', 'Date']
+        df.columns = ['Value', 'Retrieve date', 'Indicator', 'Total', 'Date']
         df = df.reset_index()
         df['Value'] = pd.to_numeric(df['Value'], errors='coerce')/1000
         reserves_total = df[df['Total']==True]['Value'].to_list()[0]
@@ -534,12 +540,12 @@ def transform_international_reserves(source=f'{TARGET_FOLDER}/src_international_
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
-
+@st.cache_resource(ttl = '7 days')
 def plot_international_reserves(source=f'{TARGET_FOLDER}/tf_international_reserves.csv', title = 'International reserves, bn USD', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
     df = df[df['Total']!=True]
-    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -571,6 +577,7 @@ def transform_bond_yields(source=f'{TARGET_FOLDER}/src_bond_yields.csv', output=
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_bond_yields(source=f'{TARGET_FOLDER}/tf_bond_yields.csv', title = "Bond Placements and Their Yields, UAH mn", retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     df_plot = df[df['month']!='Total for the year 2022']
@@ -654,6 +661,7 @@ def transform_interest_rates(source=f'{TARGET_FOLDER}/src_interest_rates.csv' , 
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_interest_rates(source=f'{TARGET_FOLDER}/tf_interest_rates.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     df_plot = df
@@ -671,63 +679,49 @@ def plot_interest_rates(source=f'{TARGET_FOLDER}/tf_interest_rates.csv', retriev
 def transform_financial_soundness(source=f'{TARGET_FOLDER}/src_financial_soundness.csv' ,  output=f'{TARGET_FOLDER}/tf_financial_soundness.csv'):
     try:
         df = pd.read_csv(source, encoding='utf-16')
+       
+        # Clean the first column
+        df['Indicator'] = (df['Indicator']
+                           .str.replace(r'[^a-zA-Z\s]', '')
+                           .str.strip()
+                           .apply(lambda x: re.sub(r'\s+', ' ', x))
+                           )
 
-        # Assign labels
-        column_list = df.iloc[0,:].to_list()
-        column_list[-1] = 'Retrieved on'
-        column_list[0] = 'Code'
-        column_list[1] = 'Item'
-        column_list = [str(col).split('/', 1)[0] for col in column_list]
-        column_list = [str(col).split(' ', 1)[0] for col in column_list]
-        column_list = [col.rstrip('\n') for col in column_list]
-        column_list = ['Y' + col if col[:2]=='20' else col for col in column_list]
-        df.columns = column_list
-        
         # Clean data
-        df = df[df['Code'].isna()==False]
-        item_list = [
-            'Regulatory capital to risk-weighted assets1', 
-            'Regulatory Tier 1 capital to risk-weighted assets1', 
-            'Nonperforming loans2 net of provisions to capital ', 
-            'Nonperforming loans to total gross loans2', 
-            'Liquid assets6 to total assets', 
-            'Liquid assets7 to short-term liabilities', 
-            'Net open position in foreign exchange to capital 12', 
-            'Large exposures to capital', 
-            'Spread between reference lending and deposit rates (basis points)', 
-            'Spread between highest and lowest interbank rates (basis points)', 
-            'Foreign-currency-denominated loans to total loans', 
-            'Foreign-currency-denominated liabilities to total liabilities'
+        df = (df[df['Indicator'].isna()==False]
+              .drop(columns=['retrieved'])
+              )
+        Indicator_list = [
+            'Tier capital to riskweighted assets', 
+            'Nonperforming loans net of provisions to capital', 
+            'Nonperforming loans to total gross loans', 
+            'Net open position in foreign exchange to capital'
             ] 
-        df = df[df['Item'].isin(item_list)]
-        df['Item'] = [re.sub(r"\d+", "", item) for item in df['Item'].to_list()]
-        df['Item'] = [item.rstrip() for item in df['Item'].to_list()]
-        retrieved = df['Retrieved'].iloc[0]
-        df = df.drop(['Code', 'Consoli-dation', 'Retrieved'], axis=1)
-        column_list_t = df['Item'].to_list()
+        # df = df[df['Indicator'].isin(Indicator_list)]
+        column_list_t = df['Indicator'].to_list()
         df = df.T
         df.columns = column_list_t
-        df = df[df['Regulatory capital to risk-weighted assets']!='Regulatory capital to risk-weighted assets']
-        column_list_num = df.columns
-        df[column_list_num] = df[column_list_num].apply(pd.to_numeric, errors='coerce')
-        df['Retrieved'] = retrieved
+        df = df.drop(df.index[0])
+        df = df.apply(pd.to_numeric, errors='coerce')
+        df['Retrieved'] = date.today()
         df = df.reset_index()
         df.to_csv(output, encoding='utf-16', index=False)
         log_data_transform(output)
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
-def plot_financial_soundness(source=f'{TARGET_FOLDER}/tf_financial_soundness.csv', series='Nonperforming loans to total gross loans', retrieved_from='National Bank of Ukraine'):
+@st.cache_resource(ttl = '7 days')
+def plot_financial_soundness(source=f'{TARGET_FOLDER}/tf_financial_soundness.csv', series='Nonperforming loans net of provisions to capital', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16', index_col='index')
     df_plot = df.iloc[-12:,]
-    if series == 'Liquid assets to total assets':
+    if series == 'Net open position in foreign exchange to capital':
         fig = px.bar(df_plot, x = df_plot.index, y=series,
             hover_data={series: ':.1f'},
             title=f"{series}, in % <br>Source: {retrieved_from}</br>",
             text_auto='.2s',
             labels={
-                'index': 'Date Month',
-                'x': 'Date Month'
+                'index': 'Date Quarter',
+                'x': 'Date Quarter'
                 }
         )
     else:
@@ -735,8 +729,8 @@ def plot_financial_soundness(source=f'{TARGET_FOLDER}/tf_financial_soundness.csv
             hover_data={series: ':.1f'},
             title=f"{series}, in % <br>Source: {retrieved_from}</br>",
             labels={
-                'index': 'Date Month',
-                'x': 'Date Month'
+                'index': 'Date Quarter',
+                'x': 'Date Quarter'
                 }
         )
     fig.update_layout(template = GRAPH_SCHEME)
@@ -777,6 +771,7 @@ def transform_fatalities(source = f'{TARGET_FOLDER}/src_fatalities.csv.gz', outp
     except Exception as e:
         logging.error(f'Could not get {output_geo} and {output_fatalities}. Error: {e}')
 
+@st.cache_resource(ttl = '7 days')
 def plot_fatalities_geo(source = f'{TARGET_FOLDER}/tf_fatalities_geo.csv.gz', mapbox_token = get_mapbox_token(), title='Conflict events, daily', retrieved_from='ACLED'):
     df = pd.read_csv(source,  encoding = 'utf-16', compression = 'gzip')
     df['DATE'] = pd.to_datetime(df['DATE'])
@@ -804,6 +799,7 @@ def plot_fatalities_geo(source = f'{TARGET_FOLDER}/tf_fatalities_geo.csv.gz', ma
     fig.update_layout(legend=dict(orientation="h", y=-0.02))
     return fig
 
+@st.cache_resource(ttl = '7 days')
 def plot_fatalities_series(source = f'{TARGET_FOLDER}/tf_fatalities_series.csv', series = 'FATALITIES', title = 'FATALITIES', retrieved_from='ACLED'):
     df = pd.read_csv(source,  encoding = 'utf-16')
     df_plot = df.groupby(['MONTH_DATE', 'EVENT_TYPE'])[series].sum()
@@ -861,8 +857,8 @@ def process_data(get_source = True, transform = True):
 
 def main():
     # Full
-    process_data(get_source=True, transform=True)
-
+    # process_data(get_source=True, transform=True)
+    transform_financial_soundness()
     # For testing
     # get_google_news()
     # plot_ccy_data().show()

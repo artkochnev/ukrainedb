@@ -3333,3 +3333,33 @@ INFO:root:Loaded texts
 INFO:root:Loaded metrics
 INFO:root:assets/tf_google_news.csv stored successfully: 03/10/2024, 22:13:56
 INFO:root:Loaded news
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 10:39:21
+INFO:root:hum_data stored successfully: 03/11/2024, 10:40:19
+INFO:root:grain_destinations stored successfully: 03/11/2024, 10:40:23
+INFO:root:refugee_cumulative stored successfully: 03/11/2024, 10:40:26
+INFO:root:idp_status stored successfully: 03/11/2024, 10:40:27
+INFO:root:key_figures stored successfully: 03/11/2024, 10:40:32
+INFO:root:food_prices stored successfully: 03/11/2024, 10:40:40
+INFO:root:ukraine_support stored successfully: 03/11/2024, 10:41:02
+INFO:root:reconstruction_sectors stored successfully: 03/11/2024, 10:41:02
+INFO:root:reconstruction_regions stored successfully: 03/11/2024, 10:41:02
+INFO:root:fiscal_income stored successfully: 03/11/2024, 10:41:03
+INFO:root:fiscal_expenses stored successfully: 03/11/2024, 10:41:04
+INFO:root:fiscal_finance stored successfully: 03/11/2024, 10:41:05
+INFO:root:cpi_headline stored successfully: 03/11/2024, 10:41:06
+INFO:root:bond_yields stored successfully: 03/11/2024, 10:41:07
+INFO:root:interest_rates stored successfully: 03/11/2024, 10:41:08
+INFO:root:financial_soundness stored successfully: 03/11/2024, 10:41:09
+INFO:root:policy_rate stored successfully: 03/11/2024, 10:41:10
+INFO:root:deposit_rate stored successfully: 03/11/2024, 10:41:11
+INFO:root:international_reserves stored successfully: 03/11/2024, 10:41:12
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: single positional indexer is out-of-bounds
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Can only use .str accessor with string values!
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: 'Item'
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: 'Item'
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Can only use .str accessor with string values!
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Can only use .str accessor with string values!
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: 'Retrieved'
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Columns must be same length as key
+ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Columns must be same length as key
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 11:07:43
