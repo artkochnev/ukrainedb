@@ -27,7 +27,7 @@ def get_source_files(source = SOURCE_FILE, sheet = SOURCE_SHEET):
     df = df.reset_index()
     return df
 
-def main():
+def update_metrics():
     df = get_source_files()
     df_output = pd.DataFrame()
     for i, j in df.iterrows():
@@ -79,4 +79,4 @@ def main():
     df_output.to_csv(EXPORT_FILE, encoding='utf-16', index=False)
 
 if __name__ == '__main__':
-    main()
+    update_metrics()

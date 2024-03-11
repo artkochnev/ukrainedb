@@ -12,6 +12,8 @@ import plotly.express as px
 from GoogleNews import GoogleNews
 import os
 import plotly.graph_objects as go
+from ping import ping_db
+from data_metrics import update_metrics
 
 # LOGGING
 logging.basicConfig(filename='data_pull.log', level=logging.INFO)
@@ -859,6 +861,8 @@ def process_data(get_source = True, transform = True):
 def main():
     # Full
     process_data(get_source=True, transform=True)
+    update_metrics()
+    ping_db()
     # For testing
     # get_google_news()
     # plot_ccy_data().show()
