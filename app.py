@@ -115,8 +115,8 @@ def main():
     fig_idps = dp.plot_hum_data(series = 'Internally Displaced', title='Internally Displaced')
     fig_civs_dead = dp.plot_hum_data(series = 'Civilian deaths, confirmed', title='Civilian deaths, confirmed')
     fig_civs_injured = dp.plot_hum_data(series = 'Civilians injured, confirmed', title='Civilians injured, confirmed')
-    fig_reconstruction_damage = dp.plot_reconstruction_sectors(series = 'Damage', title = 'Damage assessment as of August 2022, USD bn')
-    fig_reconstruction_needs = dp.plot_reconstruction_sectors(series = 'Needs', title = 'Reconstruction needs assessment as of August 2022, USD bn')
+    fig_reconstruction_damage = dp.plot_reconstruction_sectors(series = 'Damage', title = 'Damage assessment as of February 2024, USD bn')
+    fig_reconstruction_needs = dp.plot_reconstruction_sectors(series = 'Needs', title = 'Reconstruction needs assessment as of February 2024, USD bn')
     fig_reconstruction_regions = dp.plot_reconstruction_regions()
     fig_ukraine_support_committed = dp.plot_ukraine_support(series='Value committed', title = 'Support publicly announced, USD bn')
     fig_ukraine_support_delivered = dp.plot_ukraine_support(series='Value delivered', title = 'Support delivered in cash and kind, USD bn')
@@ -361,7 +361,7 @@ def main():
         - United Nations | UN. [Black Sea Grain Initiative Joint Coordination Centre](https://www.un.org/en/black-sea-grain-initiative/)
         - UN Office of High Commissioner for Human Rights | OHCHR. [Ukraine](https://www.ohchr.org/en/countries/ukraine)
         - UN Office of High Commissioner for Refugees | UNHCR. [Ukraine Refugee Situation](https://data.unhcr.org/en/situations/ukraine)
-        - World Bank (2022). [Ukraine: Rapid damage and needs assessment](https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099445209072239810/p17884304837910630b9c6040ac12428d5c)
+        - World Bank (2024). [Ukraine: Rapid damage and needs assessment](https://documents1.worldbank.org/curated/en/099021324115085807/pdf/P1801741bea12c012189ca16d95d8c2556a.pdf)
         """)
 
 if __name__ == '__main__':
