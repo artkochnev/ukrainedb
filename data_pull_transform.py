@@ -587,7 +587,8 @@ def plot_bond_yields(source=f'{TARGET_FOLDER}/tf_bond_yields.csv', title = "Bond
         text_auto='.2s',
         hover_data={'UAH: amount': ':.1f'},
         title=f"{title} <br>Source: {retrieved_from}</br>",
-        labels={'month': ''}
+        labels={'month': ''},
+        text = 'UAH: weighted yield',
     )
     fig.update_layout(yaxis={'categoryorder':'total ascending'}, template = GRAPH_SCHEME)
     fig.update_layout(coloraxis=dict(colorbar=dict(orientation='h', y=-1)))

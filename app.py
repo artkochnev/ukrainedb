@@ -262,6 +262,7 @@ def main():
     col1, col2 = st.columns(2)    
     col1.plotly_chart(fig_policy_rates, use_container_height=400, use_container_width=300)
     col2.plotly_chart(fig_international_reserves, use_container_height=400, use_container_width=300)
+    st.plotly_chart(fig_bond_yields, use_container_height=400)
     st.markdown('---')
     st.subheader('Financial system')
     write_expander(df_t,title='Financial system', expander_title='How healthy are Ukranian banks?')
@@ -303,7 +304,6 @@ def main():
     col1.plotly_chart(fig_fiscal_income, use_container_height=400, use_container_width=300)
     col2.plotly_chart(fig_fiscal_expenses, use_container_height=400, use_container_width=300)
     st.plotly_chart(fig_fiscal_finance, use_container_height=400)
-    st.plotly_chart(fig_bond_yields, use_container_height=400)
 
 #     st.header('War and cooperation')
 #     st.subheader('Ukraine support')
