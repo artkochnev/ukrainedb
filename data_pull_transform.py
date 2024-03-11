@@ -681,14 +681,14 @@ def transform_financial_soundness(source=f'{TARGET_FOLDER}/src_financial_soundne
         df = pd.read_csv(source, encoding='utf-16')
        
         # Clean the first column
-        df['Indicator'] = (df['Indicator']
+        df['Item'] = (df['Indicator']
                            .str.replace(r'[^a-zA-Z\s]', '')
                            .str.strip()
                            .apply(lambda x: re.sub(r'\s+', ' ', x))
                            )
 
         # Clean data
-        df = (df[df['Indicator'].isna()==False]
+        df = (df[df['Item'].isna()==False]
               .drop(columns=['retrieved'])
               )
         Indicator_list = [
@@ -857,8 +857,7 @@ def process_data(get_source = True, transform = True):
 
 def main():
     # Full
-    # process_data(get_source=True, transform=True)
-    transform_financial_soundness()
+    process_data(get_source=True, transform=True)
     # For testing
     # get_google_news()
     # plot_ccy_data().show()
