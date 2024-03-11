@@ -861,7 +861,6 @@ def process_data(get_source = True, transform = True):
 def main():
     # Full
     process_data(get_source=True, transform=True)
-    update_metrics()
     ping_db()
     # For testing
     # get_google_news()
