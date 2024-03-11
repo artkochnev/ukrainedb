@@ -3379,3 +3379,104 @@ INFO:root:Loaded texts
 INFO:root:Loaded metrics
 INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 11:58:50
 INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:06:04
+INFO:root:Loaded news
+INFO:root:hum_data stored successfully: 03/11/2024, 12:08:06
+INFO:root:grain_destinations stored successfully: 03/11/2024, 12:08:11
+INFO:root:refugee_cumulative stored successfully: 03/11/2024, 12:08:16
+INFO:root:idp_status stored successfully: 03/11/2024, 12:08:17
+INFO:root:key_figures stored successfully: 03/11/2024, 12:08:21
+INFO:root:food_prices stored successfully: 03/11/2024, 12:08:32
+INFO:root:ukraine_support stored successfully: 03/11/2024, 12:09:09
+INFO:root:reconstruction_sectors stored successfully: 03/11/2024, 12:09:09
+INFO:root:reconstruction_regions stored successfully: 03/11/2024, 12:09:09
+INFO:root:fiscal_income stored successfully: 03/11/2024, 12:09:11
+INFO:root:fiscal_expenses stored successfully: 03/11/2024, 12:09:12
+INFO:root:fiscal_finance stored successfully: 03/11/2024, 12:09:14
+INFO:root:cpi_headline stored successfully: 03/11/2024, 12:09:16
+INFO:root:bond_yields stored successfully: 03/11/2024, 12:09:17
+INFO:root:interest_rates stored successfully: 03/11/2024, 12:09:19
+INFO:root:financial_soundness stored successfully: 03/11/2024, 12:09:19
+INFO:root:policy_rate stored successfully: 03/11/2024, 12:09:22
+INFO:root:deposit_rate stored successfully: 03/11/2024, 12:09:24
+INFO:root:international_reserves stored successfully: 03/11/2024, 12:09:24
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:09:41
+INFO:root:assets/tf_yf_data.csv stored successfully: 03/11/2024, 12:09:43
+INFO:root:assets/tf_hum_data.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_grain_destinations.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_reconstruction_sectors.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_reconstruction_regions.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_ukraine_support.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_fiscal_income.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_fiscal_expenses.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_fiscal_finance.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_cpi_last.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_cpi_12m.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_international_reserves.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_bond_yields.csv stored successfully: 03/11/2024, 12:09:46
+INFO:root:assets/tf_policy_rate.csv stored successfully: 03/11/2024, 12:09:47
+INFO:root:assets/tf_interest_rates.csv stored successfully: 03/11/2024, 12:09:47
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 12:09:47
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:09:56
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:11:59
+INFO:root:Loaded news
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 12:21:43
+INFO:root:hum_data stored successfully: 03/11/2024, 12:21:45
+INFO:root:grain_destinations stored successfully: 03/11/2024, 12:21:51
+INFO:root:refugee_cumulative stored successfully: 03/11/2024, 12:21:54
+INFO:root:idp_status stored successfully: 03/11/2024, 12:21:55
+INFO:root:key_figures stored successfully: 03/11/2024, 12:21:59
+INFO:root:food_prices stored successfully: 03/11/2024, 12:22:14
+INFO:root:ukraine_support stored successfully: 03/11/2024, 12:22:38
+INFO:root:reconstruction_sectors stored successfully: 03/11/2024, 12:22:38
+INFO:root:reconstruction_regions stored successfully: 03/11/2024, 12:22:38
+INFO:root:fiscal_income stored successfully: 03/11/2024, 12:22:39
+INFO:root:fiscal_expenses stored successfully: 03/11/2024, 12:22:40
+INFO:root:fiscal_finance stored successfully: 03/11/2024, 12:22:41
+INFO:root:cpi_headline stored successfully: 03/11/2024, 12:22:44
+INFO:root:bond_yields stored successfully: 03/11/2024, 12:22:45
+INFO:root:interest_rates stored successfully: 03/11/2024, 12:22:46
+INFO:root:financial_soundness stored successfully: 03/11/2024, 12:22:47
+INFO:root:policy_rate stored successfully: 03/11/2024, 12:22:51
+INFO:root:deposit_rate stored successfully: 03/11/2024, 12:22:54
+INFO:root:international_reserves stored successfully: 03/11/2024, 12:22:55
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:23:13
+INFO:root:assets/tf_yf_data.csv stored successfully: 03/11/2024, 12:23:13
+INFO:root:assets/tf_hum_data.csv stored successfully: 03/11/2024, 12:23:16
+INFO:root:assets/tf_grain_destinations.csv stored successfully: 03/11/2024, 12:23:16
+INFO:root:assets/tf_reconstruction_sectors.csv stored successfully: 03/11/2024, 12:23:16
+INFO:root:assets/tf_reconstruction_regions.csv stored successfully: 03/11/2024, 12:23:16
+INFO:root:assets/tf_ukraine_support.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_fiscal_income.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_fiscal_expenses.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_fiscal_finance.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_cpi_last.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_cpi_12m.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_international_reserves.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_bond_yields.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_policy_rate.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_interest_rates.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 12:23:17
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:24:09
+INFO:root:Loaded news
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:24:10
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:24:45
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 12:26:07
+INFO:root:Loaded news

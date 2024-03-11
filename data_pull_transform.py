@@ -251,7 +251,7 @@ def transform_reconstruction_sectors(source=f'{TARGET_FOLDER}/src_reconstruction
         logging.error(f'Could not get {output}. Error: {e}')
 
 @st.cache_resource(ttl = '7 days')
-def plot_reconstruction_sectors(source=f'{TARGET_FOLDER}/tf_reconstruction_sectors.csv', series = 'Damage', title = 'Damage assessment as of August 2022', retrieved_from='World Bank (2022)'):
+def plot_reconstruction_sectors(source=f'{TARGET_FOLDER}/tf_reconstruction_sectors.csv', series = 'Damage', title = 'Damage assessment as of February 2024', retrieved_from='World Bank (2024)'):
     df = pd.read_csv(source, encoding='utf-16')
     fig = px.treemap(df, path=[px.Constant("All"), 'Sector Type', 'Sector'], values=series,
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -269,7 +269,7 @@ def transform_reconstruction_regions(source=f'{TARGET_FOLDER}/src_reconstruction
         logging.error(f'Could not get {output}. Error: {e}')
 
 @st.cache_resource(ttl = '7 days')
-def plot_reconstruction_regions(source=f'{TARGET_FOLDER}/tf_reconstruction_regions.csv', title = 'Damage by regions as of August 2022', retrieved_from='World Bank (2022)'):
+def plot_reconstruction_regions(source=f'{TARGET_FOLDER}/tf_reconstruction_regions.csv', title = 'Damage by regions as of February 2024', retrieved_from='World Bank (2024)'):
     df = pd.read_csv(source, encoding='utf-16')
     fig = px.bar(df, x = 'Damage', y='Oblast', orientation='h', color = 'Oblast type',
         text_auto='.2s',
@@ -681,11 +681,12 @@ def transform_financial_soundness(source=f'{TARGET_FOLDER}/src_financial_soundne
         df = pd.read_csv(source, encoding='utf-16')
        
         # Clean the first column
-        df['Item'] = (df['Indicator']
+        df['Indicator'] = (df['Indicator']
                            .str.replace(r'[^a-zA-Z\s]', '')
                            .str.strip()
                            .apply(lambda x: re.sub(r'\s+', ' ', x))
                            )
+        df = df.rename(columns={'Indicator': 'Item'})
 
         # Clean data
         df = (df[df['Item'].isna()==False]
