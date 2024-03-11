@@ -3516,3 +3516,19 @@ INFO:root:assets/tf_bond_yields.csv stored successfully: 03/11/2024, 14:49:54
 INFO:root:assets/tf_policy_rate.csv stored successfully: 03/11/2024, 14:49:54
 INFO:root:assets/tf_interest_rates.csv stored successfully: 03/11/2024, 14:49:54
 INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 14:49:54
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 13:22:31
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 13:23:28
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 13:24:12
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 13:25:50
+INFO:root:Loaded news
