@@ -3363,3 +3363,7 @@ ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: 'Retrieved'
 ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Columns must be same length as key
 ERROR:root:Could not get assets/tf_financial_soundness.csv. Error: Columns must be same length as key
 INFO:root:assets/tf_financial_soundness.csv stored successfully: 03/11/2024, 11:07:43
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 03/11/2024, 11:14:46
+INFO:root:Loaded news

@@ -361,7 +361,7 @@ def clean_fiscal_data(df_source, source_file, sheet_labels):
         df = df.iloc[:,-6:]
         last_date = list(df)[0]
         df['date'] = last_date[:11]
-        df.columns = ['Value', 'Retrieve date', 'Indicator', 'Code', 'Active', 'Total', 'Date']
+        df.columns = ['Value', 'Retrieve date', 'Item', 'Code', 'Active', 'Total', 'Date']
 
         # Calculate shares
         df['Value'] = pd.to_numeric(df['Value'], errors='coerce')
@@ -387,7 +387,7 @@ def transform_fiscal_income(source=f'{TARGET_FOLDER}/src_fiscal_income.csv' ,  o
 def plot_fiscal_income(source=f'{TARGET_FOLDER}/tf_fiscal_income.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -411,7 +411,7 @@ def transform_fiscal_expenses(source=f'{TARGET_FOLDER}/src_fiscal_expenses.csv' 
 def plot_fiscal_expenses(source=f'{TARGET_FOLDER}/tf_fiscal_expenses.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -435,7 +435,7 @@ def transform_fiscal_finance(source=f'{TARGET_FOLDER}/src_fiscal_finance.csv' , 
 def plot_fiscal_finance(source=f'{TARGET_FOLDER}/tf_fiscal_finance.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -460,7 +460,7 @@ def transform_cpi_headline(source=f'{TARGET_FOLDER}/src_cpi_headline.csv',  outp
         df_last = df_last.dropna()
         last_date = list(df_last)[0]
         df_last['date'] = last_date[:11]
-        df_last.columns = ['Value', 'Retrieve date', 'Indicator', 'Total', 'Date']
+        df_last.columns = ['Value', 'Retrieve date', 'Item', 'Total', 'Date']
         df_last = df_last.reset_index()
         df_last.to_csv(output_last, index=False, encoding='utf-16')
         log_data_transform(output_last)
@@ -489,7 +489,7 @@ def transform_cpi_headline(source=f'{TARGET_FOLDER}/src_cpi_headline.csv',  outp
 def plot_cpi_last(source=f'{TARGET_FOLDER}/tf_cpi_last.csv', retrieved_from='National Bank of Ukraine'):
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
-    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
         text_auto='.2s',
         hover_data={'Value': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -530,7 +530,7 @@ def transform_international_reserves(source=f'{TARGET_FOLDER}/src_international_
         last_date = list(df)[0]
         last_date = re.sub(r"\d+", "", last_date)
         df['date'] = last_date[:11]
-        df.columns = ['Value', 'Retrieve date', 'Indicator', 'Total', 'Date']
+        df.columns = ['Value', 'Retrieve date', 'Item', 'Total', 'Date']
         df = df.reset_index()
         df['Value'] = pd.to_numeric(df['Value'], errors='coerce')/1000
         reserves_total = df[df['Total']==True]['Value'].to_list()[0]
@@ -545,7 +545,7 @@ def plot_international_reserves(source=f'{TARGET_FOLDER}/tf_international_reserv
     df = pd.read_csv(source, encoding='utf-16')
     as_of_date = df['Date'][0]
     df = df[df['Total']!=True]
-    fig = px.bar(df, x = 'Value', y='Indicator', orientation='h',
+    fig = px.bar(df, x = 'Value', y='Item', orientation='h',
         text_auto='.2s',
         hover_data={'Share': ':.1f'},
         color_discrete_sequence=COLOR_SEQUENCE,
@@ -691,14 +691,14 @@ def transform_financial_soundness(source=f'{TARGET_FOLDER}/src_financial_soundne
         df = (df[df['Item'].isna()==False]
               .drop(columns=['retrieved'])
               )
-        Indicator_list = [
+        Item_list = [
             'Tier capital to riskweighted assets', 
             'Nonperforming loans net of provisions to capital', 
             'Nonperforming loans to total gross loans', 
             'Net open position in foreign exchange to capital'
             ] 
-        # df = df[df['Indicator'].isin(Indicator_list)]
-        column_list_t = df['Indicator'].to_list()
+        # df = df[df['Item'].isin(Item_list)]
+        column_list_t = df['Item'].to_list()
         df = df.T
         df.columns = column_list_t
         df = df.drop(df.index[0])
@@ -857,7 +857,7 @@ def process_data(get_source = True, transform = True):
 
 def main():
     # Full
-    process_data(get_source=True, transform=True)
+    # process_data(get_source=True, transform=True)
     # For testing
     # get_google_news()
     # plot_ccy_data().show()
@@ -882,7 +882,7 @@ def main():
     # plot_fatalities_geo().show()
     # plot_grain_destinations().show()
     # plot_cpi_12m().show()
-    # plot_cpi_last().show()
+    plot_cpi_last().show()
 
 if __name__ == "__main__":
     main()
