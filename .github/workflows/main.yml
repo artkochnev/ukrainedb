@@ -25,18 +25,21 @@ jobs:
         uses: py-actions/py-dependency-install@v2
         with:
           path: "requirements.txt"
-      - name: Fetching the original data
+      - name: Fetch original data
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git fetch origin main  # Fetch changes from the remote repository
           git reset --hard origin/main  # Reset the local repository to match the remote repository
+        env:
+          REPO_KEY: ${{ secrets.GH_UPLOAD_TOKEN }}
+          username: github-actions
       - name: Get data from data_pulling-transform-script
+        run: | 
+          python data_pull_transform.py
+          python data_metrics.py
         env: 
           MAPBOX_TOKEN: ${{ secrets.MAPBOX_TOKEN }}
-        run: | 
-           python data_pull_transform.py
-           python data_metrics.py
       - name: Commit data
         run: |
           git config --local user.email "actions@github.com"
