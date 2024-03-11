@@ -857,7 +857,7 @@ def process_data(get_source = True, transform = True):
 
 def main():
     # Full
-    # process_data(get_source=True, transform=True)
+    process_data(get_source=True, transform=True)
     # For testing
     # get_google_news()
     # plot_ccy_data().show()
@@ -882,7 +882,7 @@ def main():
     # plot_fatalities_geo().show()
     # plot_grain_destinations().show()
     # plot_cpi_12m().show()
-    plot_cpi_last().show()
+    # plot_cpi_last().show()
 
 if __name__ == "__main__":
     main()

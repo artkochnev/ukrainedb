@@ -132,7 +132,7 @@ def main():
     fig_fiscal_expenses = dp.plot_fiscal_expenses()
     fig_fiscal_finance = dp.plot_fiscal_finance()
     fig_fsi_npl = dp.plot_financial_soundness(series='Nonperforming loans net of provisions to capital')
-    fig_fsi_liquidity = dp.plot_financial_soundness(series='Liquid assets to total assets')
+    fig_fsi_liquidity = dp.plot_financial_soundness(series='Net open position in foreign exchange to capital')
     # fig_fatalities_count = dp.plot_fatalities_series(series = 'FATALITIES', title = 'Number of Fatalities')
     # fig_battle_count = dp.plot_fatalities_series(series='COUNT', title = 'Number of conflict events')
     # fig_fatalities_geo = dp.plot_fatalities_geo()
