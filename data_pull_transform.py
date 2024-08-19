@@ -13,6 +13,7 @@ from GoogleNews import GoogleNews
 import os
 import plotly.graph_objects as go
 from ping import ping_db
+import unicodedata
 
 # LOGGING
 logging.basicConfig(filename='data_pull.log', level=logging.INFO)
@@ -64,6 +65,13 @@ def log_data_transform(output):
 def convert_to_link(link, cover_text='Link'):
     return f'[{cover_text}](https://{link})'
 
+def clean_text(text):
+    # Replace â€˜ with a single quote
+    text = re.sub(r'â€˜', "'", text)
+    # Replace â€™ with a single quote
+    text = re.sub(r'â€™', "'", text)
+    return text
+
 def get_google_news(lang='en', region='US', search_topic='Ukraine', output=f'{TARGET_FOLDER}/tf_google_news.csv'):
     try:
         googlenews = GoogleNews(lang=lang, region=region)
@@ -72,6 +80,7 @@ def get_google_news(lang='en', region='US', search_topic='Ukraine', output=f'{TA
         df = pd.DataFrame(news)
         df = df[['title', 'media', 'date', 'link']]
         df['title'] = df['title'].str.replace('More', ': ')
+        df['title'] = df['title'].apply(clean_text)
         df.columns = ['Title', 'Media', 'Date', 'Link']
         df['Link'] = df['Link'].apply(convert_to_link)
         df.to_csv(output, encoding = 'utf-16', index=False)
@@ -139,17 +148,27 @@ def get_yf_data(currency_list=INSTRUMENT_LIST, output = f'{TARGET_FOLDER}/tf_yf_
     except Exception as e:
         logging.error(f'Could not get {output}. Error: {e}')
 
-def plot_ccy_data(source = f'{TARGET_FOLDER}/tf_yf_data.csv', instrument = 'UAH/USD', title = 'FX rate', retrieved_from='Yahoo Finance'):
-    df = pd.read_csv(source,  encoding = 'utf-16')
-    df_plot = df[df['instrument']==instrument]
-    fig = px.area(df, x = df_plot['date'], y = 'value',
+def plot_ccy_data(source=f'{TARGET_FOLDER}/tf_yf_data.csv', instrument='UAH/USD', title='FX rate', retrieved_from='Yahoo Finance'):
+    df = pd.read_csv(source, encoding='utf-16')
+    df_plot = df[df['instrument'] == instrument]
+    
+    fig = px.area(df_plot, x='date', y='value',
         title=f'{title} <br>Source: {retrieved_from}</br>',
         labels={
-            'x': 'Date',
             'date': 'Date',
             'value': instrument
         }
     )
+    
+    # Calculate the range based on the filtered data
+    value_std = df_plot['value'].std()
+    value_mean = df_plot['value'].mean()
+    min_range = value_mean - 3*value_std - 0.05*value_mean
+    max_range = value_mean + 3*value_std + 0.05*value_mean
+    
+    # Update y-axis range
+    fig.update_yaxes(range=[min_range, max_range])
+    
     return fig
 
 # --- MANUAL DATA
@@ -184,6 +203,7 @@ def get_ua_data(source = f'{TARGET_FOLDER}/{DATA_SOURCES}', output = TARGET_FOLD
                     try:
                         df_return = pd.read_excel(dlink, sheet_name=dsheet, header=0, skiprows=dskip)
                     except:
+                        print(f'Could not retrieve link: {dlink}')
                         df_return = pd.read_excel(dlink, sheet_name=int(dsheet_count), header=0, skiprows=dskip)
             elif dext == 'zip':
                 df_return = pd.read_csv(dlink, compression='zip')
@@ -572,6 +592,7 @@ def transform_bond_yields(source=f'{TARGET_FOLDER}/src_bond_yields.csv', output=
         drop_columns = df_labels['index'][df_labels['active']==0]
         df = df.drop(df.columns[drop_columns], axis = 1)
         df = df.dropna(how='any', axis=0)
+        df = df[~df['month'].str.contains('Total', case=False)]
         df = df.reset_index()
         df.to_csv(output, encoding='utf-16')
         log_data_transform(output)
@@ -803,6 +824,127 @@ def plot_fatalities_geo(source = f'{TARGET_FOLDER}/tf_fatalities_geo.csv.gz', ma
     return fig
 
 @st.cache_resource(ttl = '7 days')
+def plot_civilian_casualties(source = f'{TARGET_FOLDER}/tf_fatalities_series.csv', series = 'FATALITIES', title = 'FATALITIES', retrieved_from='ACLED'):
+    df = pd.read_csv(source,  encoding = 'utf-16')
+    df_plot = df.groupby(['MONTH_DATE', 'EVENT_TYPE'])[series].sum()
+    df_plot = df_plot.reset_index()
+    fig = px.bar(df_plot, 
+        x = 'MONTH_DATE', 
+        y = series,
+        color='EVENT_TYPE',
+        hover_data={f'{series}': ':.0f'},
+        title=f"{title} by month <br>Source: {retrieved_from}</br>",
+        labels={
+            "MONTH_DATE": "Month date",
+            "EVENT_TYPE": "Event type",
+            "FATALITIES": "Reported deaths",
+            "COUNT": "Number of conflict actions"
+        },
+    )
+    fig.update_layout(template = GRAPH_SCHEME)
+    fig.update_layout(xaxis={'visible': False, 'showticklabels': True})
+    fig.update_layout(legend=dict(orientation="h"))
+    return fig
+
+@st.cache_resource(ttl = '7 days')
+def plot_civilian_deaths_since_2014(source = f'{TARGET_FOLDER}/tf_civilians_killed_since_2014.xlsx', title = 'civilian deaths since 2014', retrieved_from='UNHCR'):
+    df = pd.read_excel(source)
+    df_plot = df.copy()
+    df_plot = df_plot.reset_index()
+    fig = px.bar(df_plot, 
+        x = 'Date', 
+        y = 'Civilians killed, confirmed',
+        title=f"Annual {title}<br>Source: {retrieved_from}</br>",
+        text='Civilians killed, confirmed',
+        labels={'Civilians killed, confirmed': 'Civilians killed, confirmed', 'Date': 'Date'}
+    )
+    fig.update_traces(
+        textposition='outside',  # Position labels outside the bars
+        textangle=0,  # Keep text horizontal
+        cliponaxis=False  # Ensure labels are visible even if they extend beyond the chart area
+    )
+    fig.update_layout(template = GRAPH_SCHEME)
+    fig.update_layout(xaxis={'visible': True, 'showticklabels': True})
+    fig.update_layout(legend=dict(orientation="h"))
+    return fig
+
+@st.cache_resource(ttl = '7 days')
+def plot_fatalities_series(source = f'{TARGET_FOLDER}/tf_fatalities_series.csv', series = 'FATALITIES', title = 'FATALITIES', retrieved_from='ACLED'):
+    df = pd.read_csv(source,  encoding = 'utf-16')
+    df_plot = df.groupby(['MONTH_DATE', 'EVENT_TYPE'])[series].sum()
+    df_plot = df_plot.reset_index()
+    fig = px.bar(df_plot, 
+        x = 'MONTH_DATE', 
+        y = series,
+        color='EVENT_TYPE',
+        hover_data={f'{series}': ':.0f'},
+        title=f"{title} by month <br>Source: {retrieved_from}</br>",
+        labels={
+            "MONTH_DATE": "Month date",
+            "EVENT_TYPE": "Event type",
+            "FATALITIES": "Reported deaths",
+            "COUNT": "Number of conflict actions"
+        },
+    )
+    fig.update_layout(template = GRAPH_SCHEME)
+    fig.update_layout(xaxis={'visible': False, 'showticklabels': True})
+    fig.update_layout(legend=dict(orientation="h"))
+    return fig
+
+@st.cache_resource(ttl = '7 days')
+def plot_civilian_casualties_since_2022(source = f'{TARGET_FOLDER}/tf_civilian_casualties.xlsx', title = 'Civilian casualties since February 24th, 2022', retrieved_from='UNHCR'):
+    df = pd.read_excel(source)
+    df_plot = df.melt(
+        id_vars=['Date'],
+        value_vars=['Killed', 'Injured'],
+        var_name='Casualty type',
+        value_name='Count'
+    )
+
+    df_plot = df_plot.reset_index()
+    fig = px.bar(df_plot, 
+        x = 'Date', 
+        y = 'Count',
+        color='Casualty type',
+        title=f"{title}<br>Source: {retrieved_from}</br>",
+    )
+    fig.update_layout(template = GRAPH_SCHEME)
+    fig.update_layout(xaxis={'visible': True, 'showticklabels': True})
+    fig.update_layout(
+        legend=dict(
+            orientation="h",  # horizontal orientation
+            yanchor="bottom",
+            y=1.02,  # slightly above the plot
+            xanchor="right",
+            x=1
+        )
+    )
+
+    return fig
+
+@st.cache_resource(ttl = '7 days')
+def plot_fatalities_series_old(source = f'{TARGET_FOLDER}/tf_fatalities_series.csv', series = 'FATALITIES', title = 'FATALITIES', retrieved_from='ACLED'):
+    df = pd.read_csv(source,  encoding = 'utf-16')
+    df_plot = df.groupby(['MONTH_DATE', 'EVENT_TYPE'])[series].sum()
+    df_plot = df_plot.reset_index()
+    fig = px.bar(df_plot, 
+        x = 'MONTH_DATE', 
+        y = series,
+        color='EVENT_TYPE',
+        hover_data={f'{series}': ':.0f'},
+        title=f"{title} by month <br>Source: {retrieved_from}</br>",
+        labels={
+            "MONTH_DATE": "Month date",
+            "EVENT_TYPE": "Event type",
+            "FATALITIES": "Reported deaths",
+            "COUNT": "Number of conflict actions"
+        },
+    )
+    fig.update_layout(template = GRAPH_SCHEME)
+    fig.update_layout(xaxis={'visible': False, 'showticklabels': True})
+    fig.update_layout(legend=dict(orientation="h"))
+    return fig
+@st.cache_resource(ttl = '7 days')
 def plot_fatalities_series(source = f'{TARGET_FOLDER}/tf_fatalities_series.csv', series = 'FATALITIES', title = 'FATALITIES', retrieved_from='ACLED'):
     df = pd.read_csv(source,  encoding = 'utf-16')
     df_plot = df.groupby(['MONTH_DATE', 'EVENT_TYPE'])[series].sum()
@@ -860,8 +1002,9 @@ def process_data(get_source = True, transform = True):
 
 def main():
     # Full
-    process_data(get_source=True, transform=True)
-    ping_db()
+    plot_ccy_data()
+    # process_data(get_source=True, transform=True)
+    # ping_db()
     # For testing
     # get_google_news()
     # plot_ccy_data().show()

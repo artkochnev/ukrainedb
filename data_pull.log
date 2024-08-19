@@ -8880,3 +8880,238 @@ INFO:root:assets/tf_bond_yields.csv stored successfully: 08/06/2024, 05:32:25
 INFO:root:assets/tf_policy_rate.csv stored successfully: 08/06/2024, 05:32:25
 INFO:root:assets/tf_interest_rates.csv stored successfully: 08/06/2024, 05:32:25
 INFO:root:assets/tf_financial_soundness.csv stored successfully: 08/06/2024, 05:32:25
+INFO:root:hum_data stored successfully: 08/19/2024, 10:52:12
+INFO:root:grain_destinations stored successfully: 08/19/2024, 10:52:18
+INFO:root:refugee_cumulative stored successfully: 08/19/2024, 10:52:20
+INFO:root:idp_status stored successfully: 08/19/2024, 10:52:20
+INFO:root:key_figures stored successfully: 08/19/2024, 10:52:25
+INFO:root:food_prices stored successfully: 08/19/2024, 10:52:33
+INFO:root:hum_data stored successfully: 08/19/2024, 10:53:41
+INFO:root:grain_destinations stored successfully: 08/19/2024, 10:53:44
+INFO:root:refugee_cumulative stored successfully: 08/19/2024, 10:53:44
+INFO:root:idp_status stored successfully: 08/19/2024, 10:53:45
+INFO:root:key_figures stored successfully: 08/19/2024, 10:53:46
+INFO:root:food_prices stored successfully: 08/19/2024, 10:53:51
+INFO:root:hum_data stored successfully: 08/19/2024, 10:56:16
+INFO:root:grain_destinations stored successfully: 08/19/2024, 10:56:20
+INFO:root:refugee_cumulative stored successfully: 08/19/2024, 10:56:21
+INFO:root:idp_status stored successfully: 08/19/2024, 10:56:21
+INFO:root:key_figures stored successfully: 08/19/2024, 10:56:23
+INFO:root:food_prices stored successfully: 08/19/2024, 10:56:29
+INFO:root:ukraine_support stored successfully: 08/19/2024, 10:56:50
+INFO:root:reconstruction_sectors stored successfully: 08/19/2024, 10:56:50
+INFO:root:reconstruction_regions stored successfully: 08/19/2024, 10:56:50
+INFO:root:fiscal_income stored successfully: 08/19/2024, 10:56:51
+INFO:root:fiscal_expenses stored successfully: 08/19/2024, 10:56:51
+INFO:root:fiscal_finance stored successfully: 08/19/2024, 10:56:52
+INFO:root:cpi_headline stored successfully: 08/19/2024, 10:56:54
+INFO:root:bond_yields stored successfully: 08/19/2024, 10:56:54
+INFO:root:interest_rates stored successfully: 08/19/2024, 10:56:55
+INFO:root:financial_soundness stored successfully: 08/19/2024, 10:56:55
+INFO:root:policy_rate stored successfully: 08/19/2024, 10:56:56
+INFO:root:deposit_rate stored successfully: 08/19/2024, 10:56:57
+INFO:root:international_reserves stored successfully: 08/19/2024, 10:56:58
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 10:58:15
+INFO:root:assets/tf_yf_data.csv stored successfully: 08/19/2024, 10:58:31
+INFO:root:assets/tf_hum_data.csv stored successfully: 08/19/2024, 10:58:42
+INFO:root:assets/tf_grain_destinations.csv stored successfully: 08/19/2024, 10:58:42
+INFO:root:assets/tf_reconstruction_sectors.csv stored successfully: 08/19/2024, 10:58:42
+INFO:root:assets/tf_reconstruction_regions.csv stored successfully: 08/19/2024, 10:58:42
+INFO:root:assets/tf_ukraine_support.csv stored successfully: 08/19/2024, 10:58:42
+INFO:root:assets/tf_fiscal_income.csv stored successfully: 08/19/2024, 10:58:42
+INFO:root:assets/tf_fiscal_expenses.csv stored successfully: 08/19/2024, 10:58:43
+INFO:root:assets/tf_fiscal_finance.csv stored successfully: 08/19/2024, 10:58:43
+INFO:root:assets/tf_cpi_last.csv stored successfully: 08/19/2024, 10:58:43
+INFO:root:assets/tf_cpi_12m.csv stored successfully: 08/19/2024, 10:58:43
+INFO:root:assets/tf_international_reserves.csv stored successfully: 08/19/2024, 10:58:43
+INFO:root:assets/tf_bond_yields.csv stored successfully: 08/19/2024, 10:58:43
+INFO:root:assets/tf_policy_rate.csv stored successfully: 08/19/2024, 10:58:44
+INFO:root:assets/tf_interest_rates.csv stored successfully: 08/19/2024, 10:58:44
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 08/19/2024, 10:58:44
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 11:57:16
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 11:58:35
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:00:19
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:01:16
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:01:53
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:02:39
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:03:55
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:05:55
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:07:08
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:08:41
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:15:55
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:17:37
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:18:47
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:19:53
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:20:31
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:21:27
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+INFO:root:hum_data stored successfully: 08/19/2024, 12:30:15
+INFO:root:grain_destinations stored successfully: 08/19/2024, 12:30:20
+INFO:root:refugee_cumulative stored successfully: 08/19/2024, 12:30:23
+INFO:root:idp_status stored successfully: 08/19/2024, 12:30:24
+INFO:root:food_prices stored successfully: 08/19/2024, 12:30:28
+INFO:root:ukraine_support stored successfully: 08/19/2024, 12:30:44
+INFO:root:reconstruction_sectors stored successfully: 08/19/2024, 12:30:44
+INFO:root:reconstruction_regions stored successfully: 08/19/2024, 12:30:44
+INFO:root:fiscal_income stored successfully: 08/19/2024, 12:30:45
+INFO:root:fiscal_expenses stored successfully: 08/19/2024, 12:30:46
+INFO:root:fiscal_finance stored successfully: 08/19/2024, 12:30:46
+INFO:root:cpi_headline stored successfully: 08/19/2024, 12:30:49
+INFO:root:bond_yields stored successfully: 08/19/2024, 12:30:49
+INFO:root:interest_rates stored successfully: 08/19/2024, 12:30:50
+INFO:root:financial_soundness stored successfully: 08/19/2024, 12:30:50
+INFO:root:policy_rate stored successfully: 08/19/2024, 12:30:51
+INFO:root:deposit_rate stored successfully: 08/19/2024, 12:30:51
+INFO:root:international_reserves stored successfully: 08/19/2024, 12:30:52
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+INFO:root:assets/tf_yf_data.csv stored successfully: 08/19/2024, 12:31:51
+INFO:root:assets/tf_hum_data.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_grain_destinations.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_reconstruction_sectors.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_reconstruction_regions.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_ukraine_support.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_fiscal_income.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_fiscal_expenses.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_fiscal_finance.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_cpi_last.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_cpi_12m.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_international_reserves.csv stored successfully: 08/19/2024, 12:31:54
+INFO:root:assets/tf_bond_yields.csv stored successfully: 08/19/2024, 12:31:55
+INFO:root:assets/tf_policy_rate.csv stored successfully: 08/19/2024, 12:31:55
+INFO:root:assets/tf_interest_rates.csv stored successfully: 08/19/2024, 12:31:55
+INFO:root:assets/tf_financial_soundness.csv stored successfully: 08/19/2024, 12:31:55
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+ERROR:root:Could not get assets/tf_google_news.csv. Error: 'StringMethods' object has no attribute 'apply'
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:40:38
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:42:07
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+ERROR:root:Could not get assets/tf_google_news.csv. Error: "None of [Index(['title', 'media', 'date', 'link'], dtype='object')] are in the [columns]"
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+ERROR:root:Could not get assets/tf_google_news.csv. Error: [Errno 13] Permission denied: 'assets/tf_google_news.csv'
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:45:21
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:47:42
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:51:50
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:55:25
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 12:55:59
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:41:27
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:42:19
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:45:58
+INFO:root:Loaded news
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:46:01
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:47:40
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:48:20
+INFO:root:Loaded news
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:48:32
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:49:14
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:51:05
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:52:43
+INFO:root:Loaded news
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:52:55
+INFO:root:Loaded news
+INFO:root:Loaded texts
+INFO:root:Loaded metrics
+INFO:root:assets/tf_google_news.csv stored successfully: 08/19/2024, 13:54:38
+INFO:root:Loaded news

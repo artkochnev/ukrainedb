@@ -113,8 +113,8 @@ def main():
     fig_ccy = dp.plot_ccy_data()
     fig_refugees = dp.plot_hum_data(series = 'Refugees', title='Refugees')
     fig_idps = dp.plot_hum_data(series = 'Internally Displaced', title='Internally Displaced')
-    fig_civs_dead = dp.plot_hum_data(series = 'Civilian deaths, confirmed', title='Civilian deaths, confirmed')
-    fig_civs_injured = dp.plot_hum_data(series = 'Civilians injured, confirmed', title='Civilians injured, confirmed')
+    fig_civs_casualties_since_2022 = dp.plot_civilian_casualties_since_2022(title = 'Civilian casualties since February 24th, 2022', retrieved_from='UNHCR')
+    fig_civs_deaths_since_2014 = dp.plot_civilian_deaths_since_2014(title = 'Civilian deaths since 2014', retrieved_from='UNHCR')
     fig_reconstruction_damage = dp.plot_reconstruction_sectors(series = 'Damage', title = 'Damage assessment as of February 2024, USD bn')
     fig_reconstruction_needs = dp.plot_reconstruction_sectors(series = 'Needs', title = 'Reconstruction needs assessment as of February 2024, USD bn')
     fig_reconstruction_regions = dp.plot_reconstruction_regions()
@@ -149,15 +149,15 @@ def main():
     st.header('Key indicators')
     m1, m2 = st.columns(2)
     m1.metric(
-        "Refugees", 
-        value = get_metric(df_m, 'Refugees', 'Last value', digits=6),
-        delta = get_metric(df_m, 'Refugees', 'Change', digits=6),
+        "Civilians killed since 2022, confirmed", 
+        value = get_metric(df_m, 'Civilians killed since 2022', 'Last value', digits=3),
+        delta = get_metric(df_m, 'Civilians killed since 2022', 'Change', digits=3),
         delta_color = 'inverse' 
         )
     m2.metric(
-        "Internally displaced", 
-        value = get_metric(df_m, 'Internally displaced', 'Last value', digits=6),
-        delta = get_metric(df_m, 'Internally displaced', 'Change', digits=6),
+        "Civilians injured since 2022, confirmed", 
+        value = get_metric(df_m, 'Civilians injured since 2022', 'Last value', digits=3),
+        delta = get_metric(df_m, 'Civilians injured since 2022', 'Change', digits=3),
         delta_color = 'inverse' 
         )
     m1, m2 = st.columns(2)
@@ -179,36 +179,36 @@ def main():
     st.subheader('Civilian casualties')
     m1, m2 = st.columns(2)
     m1.metric(
-        "Civilians killed, confirmed", 
-        value = get_metric(df_m, 'Civilians killed, confirmed', 'Last value', digits=3),
-        delta = get_metric(df_m, 'Civilians killed, confirmed', 'Change', digits=3),
+        "Civilians killed since 2022, confirmed", 
+        value = get_metric(df_m, 'Civilians killed since 2022', 'Last value', digits=3),
+        delta = get_metric(df_m, 'Civilians killed since 2022', 'Change', digits=3),
         delta_color = 'inverse' 
         )
     m2.metric(
-        "Civilians injured, confirmed", 
-        value = get_metric(df_m, 'Civilians injured, confirmed', 'Last value', digits=3),
-        delta = get_metric(df_m, 'Civilians injured, confirmed', 'Change', digits=3),
+        "Civilians injured since 2022, confirmed", 
+        value = get_metric(df_m, 'Civilians injured since 2022', 'Last value', digits=3),
+        delta = get_metric(df_m, 'Civilians injured since 2022', 'Change', digits=3),
         delta_color = 'inverse' 
         )
     write_expander(df_t,title='Casualties', expander_title='Casualties and surronding issues')
-    col1, col2 = st.columns(2)
-    col1.plotly_chart(fig_civs_dead, use_container_height=400, use_container_width=300)
-    col2.plotly_chart(fig_civs_injured, use_container_height=400, use_container_width=300)
+    # col1 = st.columns(1)
+    st.plotly_chart(fig_civs_casualties_since_2022)
+    # col2.plotly_chart(fig_civs_deaths_since_2014, use_container_height=400, use_container_width=300)
     st.markdown('---')
     st.subheader('Displacement')
-    m1, m2 = st.columns(2)
-    m1.metric(
-        "Refugees", 
-        value = get_metric(df_m, 'Refugees', 'Last value', digits=6),
-        delta = get_metric(df_m, 'Refugees', 'Change', digits=6),
-        delta_color = 'inverse' 
-        )
-    m2.metric(
-        "Internally displaced", 
-        value = get_metric(df_m, 'Internally displaced', 'Last value', digits=6),
-        delta = get_metric(df_m, 'Internally displaced', 'Change', digits=6),
-        delta_color = 'inverse' 
-        )
+    # m1, m2 = st.columns(2)
+    # m1.metric(
+    #     "Refugees", 
+    #     value = get_metric(df_m, 'Refugees', 'Last value', digits=6),
+    #     delta = get_metric(df_m, 'Refugees', 'Change', digits=6),
+    #     delta_color = 'inverse' 
+    #     )
+    # m2.metric(
+    #     "Internally displaced", 
+    #     value = get_metric(df_m, 'Internally displaced', 'Last value', digits=6),
+    #     delta = get_metric(df_m, 'Internally displaced', 'Change', digits=6),
+    #     delta_color = 'inverse' 
+    #     )
     write_expander(df_t,title='Displacement', expander_title='How to interpret displacement data')    
     col1, col2 = st.columns(2)
     col1.plotly_chart(fig_idps, use_container_height=400, use_container_width=300)

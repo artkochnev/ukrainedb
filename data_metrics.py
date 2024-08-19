@@ -23,7 +23,7 @@ def get_source_files(source = SOURCE_FILE, sheet = SOURCE_SHEET):
           [df['Active'] == 1]
           [df['Transformed data'] == 1]
           )
-    df = df[['Name', 'Shape Horisontal', 'Title', 'Subtitle', 'Value column', 'Unit', 'Condition field', 'Condition', 'Source', 'Source link']]
+    df = df[['Name', 'Shape Horisontal', 'Title', 'Subtitle', 'Value column', 'Unit', 'Condition field', 'Condition', 'Source', 'Source link', 'Transformation']]
     df = df.reset_index()
     return df
 
@@ -42,9 +42,18 @@ def update_metrics():
         unit = df['Unit'].iloc[i]
         value_column = df['Value column'].iloc[i]
         horisontal = df['Shape Horisontal'].iloc[i]
-        # Define values
-        df_temp = pd.read_csv(link, encoding='utf-16')
-        if horisontal == 0:
+        file_extension = file_name.split('.')[-1]
+        transformation = df['Transformation'].iloc[i]
+        if file_extension == 'csv':
+            df_temp = pd.read_csv(link, encoding='utf-16')
+        else:
+            df_temp = pd.read_excel(link)
+        if transformation == 'sum':
+            df_temp = df_temp.reset_index()
+            last_value = df_temp[value_column].sum()
+            previous_value = last_value - df_temp[value_column].iloc[-1]
+            change = df_temp[value_column].iloc[-1]
+        elif horisontal == 0:
             last_value = df_temp[value_column].iloc[-1]
             previous_value = df_temp[value_column].iloc[-2]
             change = 'NA'
