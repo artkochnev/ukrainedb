@@ -1002,8 +1002,8 @@ def process_data(get_source = True, transform = True):
 
 def main():
     # Full
-    plot_ccy_data()
-    # process_data(get_source=True, transform=True)
+    # plot_ccy_data()
+    process_data(get_source=True, transform=True)
     # ping_db()
     # For testing
     # get_google_news()

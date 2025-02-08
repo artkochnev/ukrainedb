@@ -55,12 +55,13 @@ def update_metrics():
             change = df_temp[value_column].iloc[-1]
         elif horisontal == 0:
             last_value = df_temp[value_column].iloc[-1]
-            previous_value = df_temp[value_column].iloc[-2]
-            change = 'NA'
-            if type(last_value) == int or float:
-                change = last_value - previous_value
-            else:
-                previous_value == 'NA'
+            try:
+                previous_value = df_temp[value_column].iloc[-2]
+                if type(last_value) == int or float:
+                    change = last_value - previous_value
+            except:
+                change = 'NA'
+                previous_value = 'NA'
         else:
             previous_value = 'NA'
             change = 'NA'
